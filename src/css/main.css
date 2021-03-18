@@ -1,0 +1,50 @@
+.title-container{
+    margin: auto;
+    font-size: 20px;
+    color: #800080;
+}
+.top-line-container{
+    height: 120px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+.body-sentence{
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 25px;
+    color: black;
+}
+.body-container{
+    height: 86.4%;
+    background-size:cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+ }
+.sentence-container{
+    text-align: center;
+    padding-top: 5%;
+}
+@media  only screen and (max-width: 900px) and (min-width: 700px) {
+    .title-container{
+        font-size: 60%;
+    }
+}
+@media only screen and (max-width: 500px){
+    .top-line-container{
+        display: block;
+        text-align: center;
+    }
+    .title-container{
+        font-size: 50%;
+    }
+    .body-container{
+        margin-top: 3%;
+        text-align:center;
+    }
+    .body-sentence{
+        font-size: 80%;
+    }
+}
+
