@@ -280,7 +280,7 @@ input:checked + .slider:before {
     position: relative;
     width: 100%;
     max-width: 400px;
-    left: 120%;
+    left: 114%;
     margin-top: 5%;
 }
 
