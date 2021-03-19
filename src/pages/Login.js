@@ -3,7 +3,6 @@ import React from 'react'
 class Login extends React.Component{
     render () {
         const {push} = this.props.history;
-        const redirect = () => {push('/')}
         return (
             <div id = 'LoginPage'>
                 <div id = "LoginTopLine">
@@ -12,7 +11,7 @@ class Login extends React.Component{
                     </div>
 
                     <div className = "turn-back-btn-container">
-                        <button className = "turn-back-btn" onClick={redirect}> Ana Sayfaya Dön </button>
+                        <button className = "turn-back-btn" onClick={() => push('/')}> Ana Sayfaya Dön </button>
                     </div>
                 </div>
                     {/* sample warning case */ }

@@ -4,22 +4,9 @@ import cagdasLogo from '../assets-img/cagdas-logo.png';
 import MainPageButton from '../components/MainPageButton';
 class MainPage extends Component{
   render(){
+    //obj destructuring for push property, redirects the page to the path
     const {push} = this.props.history;
     
-    /* 
-      How should be refactor onClick = redirect(path) in react?
-    */
-    const redirectLogin = () => {
-      push('/login');
-    }
-    const redirectRegister = () => {
-      push('/register')
-    }
-
-    // const redirect = async (path) =>  {
-    //   push(path);
-    // }
-
     return (
       <>
         <div className = 'top-line-container'>
@@ -29,8 +16,8 @@ class MainPage extends Component{
               <div className = "title-container"> <h1>Fikirtepe Eğitime Destek Projesi </h1></div>
               {/* <a href = "/register"> <button id = "register-buttonx" type = "button" className = "button"> KAYIT </button></a> */}
               {/* <a href = "/login"> <button id = "login-buttonx" type = "button" className = "button"> GİRİŞ  </button> </a> */}
-                <MainPageButton text = 'KAYIT' onClick = {redirectRegister}/>
-                <MainPageButton text = 'GİRİŞ' onClick = {redirectLogin}/> 
+                <MainPageButton text = 'KAYIT' onClick = { () => push('/register')}/>
+                <MainPageButton text = 'GİRİŞ' onClick = { () => push('/login')}/> 
         </div>
 
         <div className = 'body-container'>
