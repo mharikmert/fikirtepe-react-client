@@ -1,7 +1,32 @@
 import '../css/style.css';
-import React from 'react'
+import React from 'react'; 
+import axios from 'axios';
 class Login extends React.Component{
+    
+    state = {
+        id: null,
+        password: null
+    }
+
+    onChange = event  => {
+        const {name, value} = event.target; 
+        this.setState({
+            [name]: value
+        })
+        console.log(this.state);
+    }
+
+    onClick  = event => {
+        event.preventDefault();
+        const {id, password} = this.state; 
+        console.log(id, password)
+        const creds = {id, password};
+        console.log(creds)
+        axios.post('/api/login', creds);
+    }
+    
     render () {
+
         const {push} = this.props.history;
         return (
             <div id = 'LoginPage'>
@@ -15,18 +40,18 @@ class Login extends React.Component{
                     </div>
                 </div>
                     {/* sample warning case */ }
-                    <Warning message = 'Lütfen şifrenizi falan giriniz'/> 
+                    {/*<Warning message = 'Lütfen şifrenizi falan giriniz'/> */}
 
 
                 <div id = "LoginPanel">
                     <div id= 'slogan'> EĞİTİM & DEĞİŞİM & GELİŞİM </div>
                     <div id = "logo"></div>
-                            <div id = "form" >
-                                <Input id = 'userID' name = 'user_id' placeholder = 'Kullanıcı Adı / TCKN'></Input>
-                                <Input type = 'password' name = 'password' placeholder= 'Şifre'></Input> 
-                                <Input id = 'login-button' value = {'Giriş'}></Input>
-                                <PasswordDiv info = 'Şifremi unuttum'></PasswordDiv>
-                                <PasswordDiv info = 'Şifre Oluştur'></PasswordDiv>
+                        <div id = "form" >
+                            <Input id = 'id' name = 'id' placeholder = 'Kullanıcı Adı / TCKN' onChange = {this.onChange}></Input>
+                            <Input type = 'password' name = 'password' placeholder= 'Şifre' onChange = {this.onChange}></Input> 
+                            <button id = 'login-button' value = {'Giriş'} onClick = {this.onClick}></button>
+                            <PasswordDiv info = 'Şifremi unuttum'></PasswordDiv>
+                            <PasswordDiv info = 'Şifre Oluştur'></PasswordDiv>
                         </div>
                 </div>
             </div>
@@ -43,7 +68,7 @@ const PasswordDiv = ({info}) => {
 const Input = (props) => {
     return (
         <input className = 'input' id = {props.id} name = {props.name} 
-        placeholder = {props.placeholder} value = {props.value} type = {props.type}>
+        placeholder = {props.placeholder} value = {props.value} type = {props.type} onChange = {props.onChange}>
         </input>
     )
 }
