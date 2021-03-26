@@ -8,14 +8,28 @@ const Login = props => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const [warn, setWarn] = useState(false);
-
+    const [buttonClicked, setButtonClicked] = useState(false);
     const onClickLogin = () => {
+        setButtonClicked(true);
         const creds = {username, password};
-        //warning timeout
-        setTimeout ( () => setWarn(false), 1500);
-        setWarn(true);
         //post credentials basic authentication 
-        axios.post('/api/auth',{},{auth:creds});
+        axios.post('/api/auth',{},{auth:creds})
+        //success case after login request 
+        .then((response) =>{
+            setButtonClicked(false);
+            // TO DO 
+            /*  -> redirecting user dynamically to pages for the user  
+                    smthing like domain.com/username or user id 
+                -> authentication control for access permission of the user 
+            */
+            push('menu')
+        //failure case 
+        },(error) => {
+            setButtonClicked(false);
+            //warning timeout
+            setTimeout ( () => setWarn(false), 1500);
+            setWarn(true);
+        });
     }
     
     const onKeyPress = event => {
@@ -46,7 +60,9 @@ const Login = props => {
                     <div id = "form" >
                         <Input id = 'id' type = 'text' placeholder = 'Kullanıcı Adı / TCKN' onChange = {event => setUsername(event.target.value)} onKeyPress = {onKeyPress}></Input>
                         <Input type = 'password' placeholder= 'Şifre' onChange = {event => setPassword(event.target.value)} onKeyPress = {onKeyPress}></Input> 
-                        <button className = 'input' id = 'login-button' onClick = {onClickLogin} onKeyPress = {onKeyPress}> GİRİŞ </button>
+                        <button className = 'input' id = 'login-button' onClick = {onClickLogin} onKeyPress = {onKeyPress}> 
+                        {buttonClicked && <span className = "spinner-border spinner-border-sm"> </span>}
+                        &nbsp;&nbsp;GİRİŞ </button>
                         <PasswordDiv info = 'Şifremi unuttum'></PasswordDiv>
                         <PasswordDiv info = 'Şifre Oluştur'></PasswordDiv>
                     </div>
