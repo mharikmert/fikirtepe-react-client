@@ -1,7 +1,8 @@
 const UserMenu = props => {
+    console.log(props);
     return (
         <div>
-            User id : {props.id}, User role: {props.role}
+            User role: {props.location.state.response.data.role}
         </div>
     )
 }
