@@ -17,12 +17,13 @@ const Login = props => {
         //success case after login request 
         .then((response) =>{
             setButtonClicked(false);
-            // TO DO 
-            /*  -> redirecting user dynamically to pages for the user  
-                    smthing like domain.com/username or user id 
-                -> authentication control for access permission of the user 
-            */
-            push('menu')
+            push({
+                pathname : '/menu', 
+                state : {
+                    //this response might contain necessary information for user 
+                    response
+                },
+            })
         //failure case 
         },(error) => {
             setButtonClicked(false);
@@ -37,7 +38,7 @@ const Login = props => {
     }
     //push -> redirection function
     const {history} = props;
-    const {push} = history;
+    const {push} = history; 
 
     return (
         <div id = 'LoginPage'>
